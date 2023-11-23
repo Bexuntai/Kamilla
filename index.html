@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Игра Бусинки</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f7f7f7;
+            color: #333;
+        }
+
+        /* Остальные стили (не изменяются) */
+        /* ... */
+    </style>
+</head>
+<body>
+    <h1>Игра Бусинки</h1>
+    
+    <div id="puzzles">
+        <div id="puzzle1">
+            <p>Вопрос 1: Как меня зовут?</p>
+            <input type="text" class="answer" placeholder="Ответ">
+        </div>
+
+        <div id="puzzle2">
+            <p>Вопрос 2: Какой у меня ник в Instagram?</p>
+            <input type="text" class="answer" placeholder="Ответ">
+        </div>
+
+        <div id="puzzle3">
+            <p>Вопрос 3: Кто для меня самая красивая девушка на свете?</p>
+            <input type="text" class="answer" placeholder="Ответ">
+        </div>
+        
+        <button onclick="checkAnswers()">Проверить</button>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p class="message" id="modalMessage">Ты самая умная девушка на свете <span class="heart">&#10084;</span></p>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            let answers = document.querySelectorAll('.answer');
+            let correctAnswers = ['бексунтай', '_bqlqpqn', 'камилла']; // Измененный третий ответ
+
+            let allCorrect = true;
+
+            answers.forEach((answer, index) => {
+                if (answer.value.trim().toLowerCase() !== correctAnswers[index]) {
+                    answer.classList.add('error'); // Добавляем класс для выделения ошибочного поля
+                    allCorrect = false;
+                } else {
+                    answer.classList.remove('error'); // Удаляем класс, если ответ верный
+                }
+            });
+
+            if (allCorrect) {
+                document.getElementById('myModal').style.display = 'block';
+            } else {
+                alert('Неправильно. Попробуйте угадать снова.');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
